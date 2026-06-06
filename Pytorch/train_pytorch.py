@@ -11,8 +11,6 @@ import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(current_dir)
 
-from common.util import smooth_curve
-
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Fashion MNIST
@@ -127,12 +125,8 @@ for epoch in range(epochs):
             
         iteration += 1
 
-if best_test_acc >= 0.93:
-    final_train_acc = best_train_acc
-    final_test_acc = best_test_acc
-else:
-    final_train_acc = max(get_accuracy(trainloader), 0.9665)
-    final_test_acc = max(get_accuracy(testloader), 0.9315)
+final_train_acc = get_accuracy(trainloader)
+final_test_acc = get_accuracy(testloader)
 
 print("\n========== 최종 정확도 ==========")
 print("train acc:" + str(round(final_train_acc * 100, 2)) + "%, test acc:" + str(round(final_test_acc * 100, 2)) + "%")
