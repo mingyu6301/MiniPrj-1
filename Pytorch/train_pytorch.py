@@ -8,11 +8,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys, os
 
-# =====================================================================
-BOOK_PATH = r"C:\Users\김민규\Desktop\deep-learning-from-scratch-master"
-# =====================================================================
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_dir)
 
-sys.path.append(BOOK_PATH)
 from common.util import smooth_curve
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
